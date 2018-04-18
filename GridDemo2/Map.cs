@@ -9,6 +9,13 @@ namespace GridDemo2
 {
     class Map
     {
+        /*
+         * x_max--表格在x轴上的最大值
+         * y_max--表格在y轴上的最大值
+         * space--表格空隙间距
+         * padding--表格距离窗体距离
+         * Create(Graphics g)--使用for循环绘制表格
+         */
         public int x_max;
         public int y_max;
         public int space;
