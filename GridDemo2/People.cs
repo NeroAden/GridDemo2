@@ -12,6 +12,17 @@ namespace GridDemo2
         public Point Location;
         public List<Point> historyPoint = new List<Point>();
         public int size;
+        private Boolean isMoveToBody(Point point)
+        {
+            if (historyPoint.Contains(point))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         private void AutoList(Point point)
         {
             if (historyPoint.Count<size)
@@ -29,6 +40,11 @@ namespace GridDemo2
             if (Location.Y > 0)
             {
                 Location.Y--;
+                if (isMoveToBody(Location))
+                {
+                    Location.Y++;
+                    return;
+                }
                 AutoList(Location);
             }
         }
@@ -37,6 +53,11 @@ namespace GridDemo2
             if (Location.Y < map.y_max-1)
             {
                 Location.Y++;
+                if (isMoveToBody(Location))
+                {
+                    Location.Y--;
+                    return;
+                }
                 AutoList(Location);
             }
         }
@@ -45,6 +66,11 @@ namespace GridDemo2
             if (Location.X > 0)
             {
                 Location.X--;
+                if (isMoveToBody(Location))
+                {
+                    Location.X++;
+                    return;
+                }
                 AutoList(Location);
             }
         }
@@ -53,6 +79,11 @@ namespace GridDemo2
             if (Location.X < map.x_max-1)
             {
                 Location.X++;
+                if (isMoveToBody(Location))
+                {
+                    Location.X--;
+                    return;
+                }
                 AutoList(Location);
             }
         }
