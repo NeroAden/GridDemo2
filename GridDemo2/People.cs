@@ -10,11 +10,26 @@ namespace GridDemo2
     class People
     {
         public Point Location;
+        public List<Point> historyPoint = new List<Point>();
+        public int size;
+        private void AutoList(Point point)
+        {
+            if (historyPoint.Count<size)
+            {
+                historyPoint.Insert(0, point);
+            }
+            else
+            {
+                historyPoint.RemoveAt(size-1);
+                historyPoint.Insert(0, point);
+            }
+        }
         public void MoveUp(Map map)
         {
             if (Location.Y > 0)
             {
                 Location.Y--;
+                AutoList(Location);
             }
         }
         public void MoveDown(Map map)
@@ -22,6 +37,7 @@ namespace GridDemo2
             if (Location.Y < map.y_max-1)
             {
                 Location.Y++;
+                AutoList(Location);
             }
         }
         public void MoveLeft(Map map)
@@ -29,6 +45,7 @@ namespace GridDemo2
             if (Location.X > 0)
             {
                 Location.X--;
+                AutoList(Location);
             }
         }
         public void MoveRight(Map map)
@@ -36,11 +53,15 @@ namespace GridDemo2
             if (Location.X < map.x_max-1)
             {
                 Location.X++;
+                AutoList(Location);
             }
         }
         public void Updata(Graphics g, Map map)
         {
-            g.FillEllipse(new SolidBrush(Color.Black), map.space * Location.X + map.padding, map.space * Location.Y + map.padding, 30, 30);
+            foreach (Point item in historyPoint)
+            {
+                g.FillEllipse(new SolidBrush(Color.Black), map.space * item.X + map.padding, map.space * item.Y + map.padding, 30, 30);
+            }
             map.Create(g);
         }
     }

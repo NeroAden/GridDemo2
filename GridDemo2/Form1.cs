@@ -21,11 +21,12 @@ namespace GridDemo2
             InitializeComponent();
             backGround = CreateGraphics();
             boll = CreateGraphics();
-            map.x_max = 10;
-            map.y_max = 10;
+            map.x_max = 12;
+            map.y_max = 12;
             map.space = 30;
             map.padding = 50;
             people.Location = new Point(1, 0);
+            people.size = 8;
         }
 
         private void button1_Click(object sender, EventArgs e)
