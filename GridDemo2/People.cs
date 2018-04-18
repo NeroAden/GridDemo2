@@ -25,6 +25,7 @@ namespace GridDemo2
         {
             if (historyPoint.Contains(point))
             {
+                Form1.GG();
                 return true;
             }
             else
@@ -57,6 +58,10 @@ namespace GridDemo2
                 CheckCras(Location, crah,map);
                 AutoList(Location);
             }
+            else
+            {
+                Form1.GG();
+            }
         }
         public void MoveDown(Crah crah,Map map)
         {
@@ -70,6 +75,10 @@ namespace GridDemo2
                 }
                 CheckCras(Location, crah,map);
                 AutoList(Location);
+            }
+            else
+            {
+                Form1.GG();
             }
         }
         public void MoveLeft(Crah crah, Map map)
@@ -85,6 +94,10 @@ namespace GridDemo2
                 CheckCras(Location, crah,map);
                 AutoList(Location);
             }
+            else
+            {
+                Form1.GG();
+            }
         }
         public void MoveRight(Crah crah, Map map)
         {
@@ -98,6 +111,10 @@ namespace GridDemo2
                 }
                 CheckCras(Location, crah,map);
                 AutoList(Location);
+            }
+            else
+            {
+                Form1.GG();
             }
         }
         public void Updata(Graphics g, Map map)
