@@ -15,18 +15,52 @@ namespace GridDemo2
         Map map = new Map();
         People people = new People();
         Graphics backGround,boll;
-        Color color = new Color();
+        Timer timer = new Timer();
+        Way.MoveWay way = Way.MoveWay.Down;
+
         public Form1()
         {
             InitializeComponent();
             backGround = CreateGraphics();
             boll = CreateGraphics();
+            timer.Interval = 500;
+            timer.Tick += Timer_Tick;
             map.x_max = 12;
             map.y_max = 12;
             map.space = 30;
             map.padding = 50;
             people.Location = new Point(1, 0);
             people.size = 8;
+            timer.Start();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            switch (way)
+            {
+                case Way.MoveWay.Up:
+                    boll.Clear(Color.White);
+                    people.MoveUp(map);
+                    people.Updata(boll, map);
+                    break;
+                case Way.MoveWay.Down:
+                    boll.Clear(Color.White);
+                    people.MoveDown(map);
+                    people.Updata(boll, map);
+                    break;
+                case Way.MoveWay.Left:
+                    boll.Clear(Color.White);
+                    people.MoveLeft(map);
+                    people.Updata(boll, map);
+                    break;
+                case Way.MoveWay.Right:
+                    boll.Clear(Color.White);
+                    people.MoveRight(map);
+                    people.Updata(boll, map);
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -41,24 +75,16 @@ namespace GridDemo2
             switch (e.KeyCode)
             {
                 case Keys.W:
-                    boll.Clear(Color.White);
-                    people.MoveUp(map);
-                    people.Updata(boll, map);
+                    way = Way.MoveWay.Up;
                     break;
                 case Keys.A:
-                    boll.Clear(Color.FromArgb(255, 255, 255, 255));
-                    people.MoveLeft(map);
-                    people.Updata(boll, map);
+                    way = Way.MoveWay.Left;
                     break;
                 case Keys.S:
-                    boll.Clear(Color.FromArgb(255, 255, 255, 255));
-                    people.MoveDown(map);
-                    people.Updata(boll, map);
+                    way = Way.MoveWay.Down;
                     break;
                 case Keys.D:
-                    boll.Clear(Color.FromArgb(255, 255, 255, 255));
-                    people.MoveRight(map);
-                    people.Updata(boll, map);
+                    way = Way.MoveWay.Right;
                     break;
                 default:
                     break;
