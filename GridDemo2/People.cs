@@ -12,6 +12,15 @@ namespace GridDemo2
         public Point Location;
         public List<Point> historyPoint = new List<Point>();
         public int size;
+        private void CheckCras(Point point,Crah cras,Map map)
+        {
+            if (cras.cras.Contains(point))
+            {
+                size++;
+                cras.cras.Remove(point);
+                cras.AddCras(historyPoint, map);
+            }
+        }
         private Boolean isMoveToBody(Point point)
         {
             if (historyPoint.Contains(point))
@@ -35,7 +44,7 @@ namespace GridDemo2
                 historyPoint.Insert(0, point);
             }
         }
-        public void MoveUp(Map map)
+        public void MoveUp(Crah crah, Map map)
         {
             if (Location.Y > 0)
             {
@@ -45,10 +54,11 @@ namespace GridDemo2
                     Location.Y++;
                     return;
                 }
+                CheckCras(Location, crah,map);
                 AutoList(Location);
             }
         }
-        public void MoveDown(Map map)
+        public void MoveDown(Crah crah,Map map)
         {
             if (Location.Y < map.y_max-1)
             {
@@ -58,10 +68,11 @@ namespace GridDemo2
                     Location.Y--;
                     return;
                 }
+                CheckCras(Location, crah,map);
                 AutoList(Location);
             }
         }
-        public void MoveLeft(Map map)
+        public void MoveLeft(Crah crah, Map map)
         {
             if (Location.X > 0)
             {
@@ -71,10 +82,11 @@ namespace GridDemo2
                     Location.X++;
                     return;
                 }
+                CheckCras(Location, crah,map);
                 AutoList(Location);
             }
         }
-        public void MoveRight(Map map)
+        public void MoveRight(Crah crah, Map map)
         {
             if (Location.X < map.x_max-1)
             {
@@ -84,6 +96,7 @@ namespace GridDemo2
                     Location.X--;
                     return;
                 }
+                CheckCras(Location, crah,map);
                 AutoList(Location);
             }
         }

@@ -14,7 +14,8 @@ namespace GridDemo2
     {
         Map map = new Map();
         People people = new People();
-        Graphics backGround,boll;
+        Crah crah = new Crah();
+        Graphics backGround,boll,item;
         Timer timer = new Timer();
         Way.MoveWay way = Way.MoveWay.Down;
 
@@ -22,6 +23,7 @@ namespace GridDemo2
         {
             InitializeComponent();
             backGround = CreateGraphics();
+            item = CreateGraphics();
             boll = CreateGraphics();
             timer.Interval = 500;
             timer.Tick += Timer_Tick;
@@ -31,6 +33,8 @@ namespace GridDemo2
             map.padding = 50;
             people.Location = new Point(1, 0);
             people.size = 8;
+            crah.cras_max = 2;
+            crah.AddCras(people.historyPoint, map);
             timer.Start();
         }
 
@@ -40,27 +44,28 @@ namespace GridDemo2
             {
                 case Way.MoveWay.Up:
                     boll.Clear(Color.White);
-                    people.MoveUp(map);
+                    people.MoveUp(crah,map);
                     people.Updata(boll, map);
                     break;
                 case Way.MoveWay.Down:
                     boll.Clear(Color.White);
-                    people.MoveDown(map);
+                    people.MoveDown(crah, map);
                     people.Updata(boll, map);
                     break;
                 case Way.MoveWay.Left:
                     boll.Clear(Color.White);
-                    people.MoveLeft(map);
+                    people.MoveLeft(crah, map);
                     people.Updata(boll, map);
                     break;
                 case Way.MoveWay.Right:
                     boll.Clear(Color.White);
-                    people.MoveRight(map);
+                    people.MoveRight(crah, map);
                     people.Updata(boll, map);
                     break;
                 default:
                     break;
             }
+            crah.Draw(item, map);
         }
 
         private void button1_Click(object sender, EventArgs e)
