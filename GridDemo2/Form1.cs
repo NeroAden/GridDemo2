@@ -41,7 +41,7 @@ namespace GridDemo2
             backGround = CreateGraphics();
             item = CreateGraphics();
             boll = CreateGraphics();
-            timer.Interval = 500;
+            timer.Interval = 300;
             timer.Tick += Timer_Tick;
             init();
         }
@@ -53,7 +53,7 @@ namespace GridDemo2
             map.space = 30;
             map.padding = 50;
             people.Location = new Point(1, 0);
-            people.size = 8;
+            people.size = 3;
             people.historyPoint.Clear();
             crah.cras_max = 2;
             crah.cras.Clear();
